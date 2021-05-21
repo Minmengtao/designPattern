@@ -15,6 +15,27 @@ public class BankTest{
         Bank1 b11 = Bank1.getInstance();
         Bank1 b12 = Bank1.getInstance();
         System.out.println(b11 == b12);//return true;
+
+        Bank2 b21 = Bank2.getInstance();
+        Bank2 b22 = Bank2.getInstance();
+        System.out.println(b21 == b22);//return true;
+    }
+}
+//内部类实现
+class Bank2 {
+    //延迟私有静态变量实例化
+    //1.私有化构造器
+    private Bank2() {
+        //
+    }
+    //私有化内部类
+    private static class BankHolder {
+        private static final Bank2 INSTANCE = new Bank2();
+    }
+
+    //
+    public static Bank2 getInstance() {
+        return BankHolder.INSTANCE;
     }
 }
 //懒汉式，线程不安全，
